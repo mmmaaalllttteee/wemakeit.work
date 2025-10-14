@@ -1,0 +1,39 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm install)",
+      "Bash(pnpm format)",
+      "Bash(pnpm lint:fix)",
+      "Bash(test:*)",
+      "Bash(pnpm install:*)",
+      "Bash(pnpm list:*)",
+      "Bash(pnpm why:*)",
+      "Bash(find:*)",
+      "Bash(cd:*)",
+      "Bash(pnpm exec tsc:*)",
+      "Bash(pnpm exec eslint:*)",
+      "Bash(pnpm exec prettier:*)",
+      "Bash(pnpm exec nest:*)",
+      "Bash(pnpm exec next:*)",
+      "Bash(pnpm add:*)",
+      "Bash(pnpm type-check:*)",
+      "Bash(pnpm lint:*)",
+      "Bash(git config --global user.name \"Developer\")",
+      "Bash(git config --global user.email \"developer@example.com\")",
+      "Bash(git config:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(chmod:*)",
+      "Bash(/workspaces/wemakeit.work/start.sh:*)",
+      "Bash(docker compose:*)",
+      "Bash(docker logs:*)",
+      "Bash(pnpm build)",
+      "Bash(curl:*)",
+      "Bash(cat:*)",
+      "Bash(killall:*)",
+      "Bash(pnpm --filter @wmiw/types build)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
