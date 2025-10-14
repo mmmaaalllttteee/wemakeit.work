@@ -1,0 +1,45 @@
+{
+  "name": "wmiw-platform",
+  "version": "1.0.0",
+  "private": true,
+  "description": "We Make IT Work - Music Industry Platform",
+  "scripts": {
+    "dev": "pnpm --parallel --stream dev",
+    "dev:api": "pnpm --filter @wmiw/api dev",
+    "dev:web": "pnpm --filter @wmiw/web dev",
+    "build": "pnpm --recursive build",
+    "build:api": "pnpm --filter @wmiw/api build",
+    "build:web": "pnpm --filter @wmiw/web build",
+    "lint": "pnpm --recursive lint",
+    "lint:fix": "pnpm --recursive lint:fix",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "type-check": "pnpm --recursive type-check",
+    "test": "pnpm --recursive test",
+    "test:cov": "pnpm --recursive test:cov",
+    "quality": "pnpm lint && pnpm format:check && pnpm type-check",
+    "quality:fix": "pnpm lint:fix && pnpm format",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down",
+    "docker:logs": "docker compose logs -f",
+    "clean": "pnpm --recursive exec rm -rf node_modules dist .next && rm -rf node_modules",
+    "prepare": "husky install || true"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "packageManager": "pnpm@8.15.0",
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@typescript-eslint/eslint-plugin": "^6.18.1",
+    "@typescript-eslint/parser": "^6.18.1",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.1.1",
+    "typescript": "^5.3.3"
+  }
+}

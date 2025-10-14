@@ -1,0 +1,129 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --glass-blur: 20px;
+    --glass-opacity: 0.7;
+    --glass-brightness: 1.1;
+  }
+
+  body {
+    @apply bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50;
+    @apply text-slate-900;
+    @apply min-h-screen;
+  }
+
+  body.dark {
+    @apply bg-gradient-to-br from-slate-950 via-slate-900 to-purple-950;
+    @apply text-slate-100;
+  }
+}
+
+@layer components {
+  /* Liquid Glass Panel */
+  .glass-panel {
+    @apply backdrop-blur-xl bg-white/70 dark:bg-slate-900/70;
+    @apply border border-white/20 dark:border-white/10;
+    @apply rounded-glass shadow-glass;
+    @apply relative overflow-hidden;
+  }
+
+  .glass-panel::before {
+    content: '';
+    @apply absolute inset-0 bg-glass-gradient dark:bg-glass-gradient-dark;
+    @apply opacity-50;
+    @apply pointer-events-none;
+  }
+
+  /* Glass Card */
+  .glass-card {
+    @apply glass-panel p-6;
+    @apply transition-all duration-200;
+  }
+
+  .glass-card:hover {
+    @apply shadow-glass-lg;
+    @apply -translate-y-0.5;
+  }
+
+  /* Glass Button */
+  .glass-button {
+    @apply glass-panel px-6 py-3;
+    @apply font-medium;
+    @apply transition-all duration-200;
+    @apply cursor-pointer;
+  }
+
+  .glass-button:hover {
+    @apply brightness-110 scale-105;
+  }
+
+  .glass-button:active {
+    @apply scale-95;
+  }
+
+  /* Rainbow Reflection Effect */
+  .glass-rainbow {
+    @apply relative;
+  }
+
+  .glass-rainbow::after {
+    content: '';
+    @apply absolute inset-0 bg-rainbow-reflection;
+    @apply opacity-30;
+    @apply pointer-events-none;
+    @apply animate-glass-shimmer;
+    background-size: 200% 200%;
+  }
+
+  /* Input with Glass Effect */
+  .glass-input {
+    @apply backdrop-blur-md bg-white/50 dark:bg-slate-800/50;
+    @apply border border-white/30 dark:border-white/10;
+    @apply rounded-lg px-4 py-2.5;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary-500/50;
+    @apply transition-all duration-200;
+  }
+
+  /* Bento Grid Layout */
+  .bento-grid {
+    @apply grid gap-4;
+    @apply grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
+  }
+
+  .bento-item {
+    @apply glass-card;
+  }
+
+  .bento-item-large {
+    @apply md:col-span-2;
+  }
+
+  .bento-item-tall {
+    @apply md:row-span-2;
+  }
+}
+
+@layer utilities {
+  .text-glass {
+    @apply bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-primary-600 to-accent-600;
+  }
+
+  .scrollbar-glass::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .scrollbar-glass::-webkit-scrollbar-track {
+    @apply bg-white/10 dark:bg-slate-900/10;
+    @apply rounded-full;
+  }
+
+  .scrollbar-glass::-webkit-scrollbar-thumb {
+    @apply bg-white/30 dark:bg-slate-700/30;
+    @apply rounded-full;
+    @apply hover:bg-white/50 dark:hover:bg-slate-700/50;
+  }
+}

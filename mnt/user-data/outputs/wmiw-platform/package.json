@@ -1,0 +1,22 @@
+{
+  "name": "wmiw-platform",
+  "version": "1.0.0",
+  "private": true,
+  "description": "We Make IT Work - Music Industry Platform",
+  "scripts": {
+    "dev": "pnpm --parallel --stream dev",
+    "dev:api": "pnpm --filter @wmiw/api dev",
+    "dev:web": "pnpm --filter @wmiw/web dev",
+    "build": "pnpm --recursive build",
+    "lint": "pnpm --recursive lint",
+    "test": "pnpm --recursive test",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down",
+    "docker:logs": "docker compose logs -f"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "packageManager": "pnpm@8.15.0"
+}

@@ -1,0 +1,98 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: wmiw-postgres
+    environment:
+      POSTGRES_DB: wmiw_dev
+      POSTGRES_USER: wmiw_user
+      POSTGRES_PASSWORD: wmiw_dev_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./infra/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U wmiw_user -d wmiw_dev"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: wmiw-redis
+    command: redis-server --appendonly yes
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  minio:
+    image: minio/minio:latest
+    container_name: wmiw-minio
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: wmiw_minio
+      MINIO_ROOT_PASSWORD: wmiw_minio_pass
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio_data:/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+
+  mailhog:
+    image: mailhog/mailhog:latest
+    container_name: wmiw-mailhog
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+
+  strapi:
+    image: strapi/strapi:4.25.12
+    container_name: wmiw-strapi
+    environment:
+      DATABASE_CLIENT: postgres
+      DATABASE_HOST: postgres
+      DATABASE_PORT: 5432
+      DATABASE_NAME: strapi_cms
+      DATABASE_USERNAME: wmiw_user
+      DATABASE_PASSWORD: wmiw_dev_pass
+      DATABASE_SSL: false
+      JWT_SECRET: wmiw_strapi_jwt_secret_change_in_production
+      ADMIN_JWT_SECRET: wmiw_strapi_admin_jwt_secret_change_in_production
+      APP_KEYS: wmiw_strapi_app_key1,wmiw_strapi_app_key2
+      API_TOKEN_SALT: wmiw_strapi_api_token_salt
+      NODE_ENV: development
+    ports:
+      - "1337:1337"
+    volumes:
+      - strapi_data:/srv/app
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:1337/_health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  postgres_data:
+  redis_data:
+  minio_data:
+  strapi_data:
+
+networks:
+  default:
+    name: wmiw-network
