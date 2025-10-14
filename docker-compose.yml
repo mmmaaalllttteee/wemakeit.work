@@ -59,7 +59,7 @@ services:
       - "8025:8025"
 
   strapi:
-    image: strapi/strapi:4.25.12
+    image: strapi/strapi:latest
     container_name: wmiw-strapi
     environment:
       DATABASE_CLIENT: postgres
