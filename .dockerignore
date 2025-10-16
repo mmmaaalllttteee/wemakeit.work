@@ -2,7 +2,6 @@
 node_modules
 .pnp
 .pnp.js
-pnpm-lock.yaml
 
 # Testing
 coverage
@@ -61,7 +60,6 @@ next-env.d.ts
 *~
 
 # OS
-.DS_Store
 Thumbs.db
 
 # Cache
@@ -80,9 +78,7 @@ temp
 *.db
 
 # Docker
-Dockerfile*
 docker-compose*.yml
-.dockerignore
 
 # Git
 .git
