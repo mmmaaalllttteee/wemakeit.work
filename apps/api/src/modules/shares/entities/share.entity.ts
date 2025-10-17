@@ -18,11 +18,11 @@ export class Share {
   @Column({ unique: true })
   token: string;
 
-  @Column()
+  @Column({ name: 'org_id' })
   orgId: string;
 
   @ManyToOne(() => Organization)
-  @JoinColumn({ name: 'orgId' })
+  @JoinColumn({ name: 'org_id' })
   organization: Organization;
 
   @Column()
@@ -31,11 +31,11 @@ export class Share {
   @Column()
   resourceId: string;
 
-  @Column()
+  @Column({ name: 'created_by' })
   createdBy: string;
 
   @ManyToOne(() => User)
-  @JoinColumn({ name: 'createdBy' })
+  @JoinColumn({ name: 'created_by' })
   creator: User;
 
   @Column({ type: 'jsonb' })

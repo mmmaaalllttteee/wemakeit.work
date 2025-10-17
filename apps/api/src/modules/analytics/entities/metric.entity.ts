@@ -10,20 +10,20 @@ import {
 import { AnalyticsConnection } from './connection.entity';
 
 @Entity('analytics_metrics')
-@Index(['connectionId', 'metricType', 'date'])
-@Index(['projectId', 'date'])
+@Index(['connection_id', 'metricType', 'date'])
+@Index(['project_id', 'date'])
 export class AnalyticsMetric {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ name: 'connection_id' })
   connectionId: string;
 
   @ManyToOne(() => AnalyticsConnection)
-  @JoinColumn({ name: 'connectionId' })
+  @JoinColumn({ name: 'connection_id' })
   connection: AnalyticsConnection;
 
-  @Column({ nullable: true })
+  @Column({ name: 'project_id', nullable: true })
   projectId: string;
 
   @Column()

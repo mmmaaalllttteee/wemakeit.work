@@ -15,18 +15,18 @@ export class Widget {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ name: 'user_id' })
   userId: string;
 
   @ManyToOne(() => User)
-  @JoinColumn({ name: 'userId' })
+  @JoinColumn({ name: 'user_id' })
   user: User;
 
-  @Column()
+  @Column({ name: 'org_id' })
   orgId: string;
 
   @ManyToOne(() => Organization)
-  @JoinColumn({ name: 'orgId' })
+  @JoinColumn({ name: 'org_id' })
   organization: Organization;
 
   @Column()
@@ -66,7 +66,7 @@ export class Widget {
   @Column({ default: true })
   isVisible: boolean;
 
-  @Column({ nullable: true })
+  @Column({ name: 'project_id', nullable: true })
   projectId: string;
 
   @CreateDateColumn()

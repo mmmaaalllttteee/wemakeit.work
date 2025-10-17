@@ -13,11 +13,11 @@ export class AnalyticsSyncLog {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ name: 'connection_id' })
   connectionId: string;
 
   @ManyToOne(() => AnalyticsConnection)
-  @JoinColumn({ name: 'connectionId' })
+  @JoinColumn({ name: 'connection_id' })
   connection: AnalyticsConnection;
 
   @Column()

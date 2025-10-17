@@ -14,11 +14,11 @@ export class Invitation {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ name: 'org_id' })
   orgId: string;
 
   @ManyToOne(() => Organization)
-  @JoinColumn({ name: 'orgId' })
+  @JoinColumn({ name: 'org_id' })
   organization: Organization;
 
   @Column()
@@ -36,7 +36,7 @@ export class Invitation {
   @Column({ type: 'timestamp' })
   expiresAt: Date;
 
-  @Column({ nullable: true })
+  @Column({ name: 'project_id', nullable: true })
   projectId: string; // Optional: invite to specific project
 
   @Column({ type: 'jsonb', nullable: true })
@@ -57,10 +57,10 @@ export class Invitation {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @Column()
+  @Column({ name: 'invited_by' })
   invitedBy: string; // User ID of inviter
 
-  @Column({ nullable: true })
+  @Column({ name: 'accepted_by', nullable: true })
   acceptedBy: string; // User ID who accepted
 
   @Column({ type: 'timestamp', nullable: true })

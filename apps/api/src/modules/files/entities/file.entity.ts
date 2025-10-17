@@ -16,18 +16,18 @@ export class File {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ name: 'org_id' })
   orgId: string;
 
   @ManyToOne(() => Organization)
-  @JoinColumn({ name: 'orgId' })
+  @JoinColumn({ name: 'org_id' })
   organization: Organization;
 
-  @Column({ nullable: true })
+  @Column({ name: 'project_id', nullable: true })
   projectId: string;
 
   @ManyToOne(() => Project, { nullable: true })
-  @JoinColumn({ name: 'projectId' })
+  @JoinColumn({ name: 'project_id' })
   project: Project;
 
   @Column()
@@ -48,18 +48,18 @@ export class File {
   @Column({ default: 1 })
   version: number;
 
-  @Column({ nullable: true })
+  @Column({ name: 'parent_id', nullable: true })
   parentId: string;
 
   @ManyToOne(() => File, { nullable: true })
-  @JoinColumn({ name: 'parentId' })
+  @JoinColumn({ name: 'parent_id' })
   parentFile: File;
 
-  @Column()
+  @Column({ name: 'uploaded_by' })
   uploadedBy: string;
 
   @ManyToOne(() => User)
-  @JoinColumn({ name: 'uploadedBy' })
+  @JoinColumn({ name: 'uploaded_by' })
   uploader: User;
 
   @Column({ type: 'jsonb', nullable: true })

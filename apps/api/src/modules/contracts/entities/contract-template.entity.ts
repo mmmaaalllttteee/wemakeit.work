@@ -16,11 +16,11 @@ export class ContractTemplate {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ nullable: true })
+  @Column({ name: 'org_id', nullable: true })
   orgId: string;
 
   @ManyToOne(() => Organization, { nullable: true })
-  @JoinColumn({ name: 'orgId' })
+  @JoinColumn({ name: 'org_id' })
   organization: Organization;
 
   @Column()
@@ -100,9 +100,9 @@ export class ContractTemplate {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @Column()
+  @Column({ name: 'created_by' })
   createdBy: string;
 
-  @Column({ nullable: true })
+  @Column({ name: 'last_modified_by', nullable: true })
   lastModifiedBy: string;
 }

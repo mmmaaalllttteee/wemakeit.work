@@ -14,11 +14,11 @@ export class AnalyticsConnection {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ name: 'org_id' })
   orgId: string;
 
   @ManyToOne(() => Organization)
-  @JoinColumn({ name: 'orgId' })
+  @JoinColumn({ name: 'org_id' })
   organization: Organization;
 
   @Column()
@@ -73,6 +73,6 @@ export class AnalyticsConnection {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @Column()
+  @Column({ name: 'created_by' })
   createdBy: string;
 }

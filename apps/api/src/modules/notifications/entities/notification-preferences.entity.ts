@@ -12,11 +12,11 @@ export class NotificationPreferences {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ unique: true })
+  @Column({ name: 'user_id', unique: true })
   @Index()
   userId: string;
 
-  @Column()
+  @Column({ name: 'org_id' })
   orgId: string;
 
   // Email notifications
