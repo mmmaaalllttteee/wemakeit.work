@@ -1,17 +1,17 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, Index } from 'typeorm';
 
 @Entity('activities')
-@Index(['orgId', 'createdAt'])
-@Index(['userId', 'createdAt'])
-@Index(['projectId', 'createdAt'])
+@Index(['org_id', 'createdAt'])
+@Index(['user_id', 'createdAt'])
+@Index(['project_id', 'createdAt'])
 export class Activity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ name: 'org_id' })
   orgId: string;
 
-  @Column()
+  @Column({ name: 'user_id' })
   userId: string;
 
   @Column()
@@ -32,7 +32,7 @@ export class Activity {
   @Column({ type: 'text', nullable: true })
   resourceName: string;
 
-  @Column({ nullable: true })
+  @Column({ name: 'project_id', nullable: true })
   projectId: string; // Associated project
 
   @Column({ type: 'text', nullable: true })

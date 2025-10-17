@@ -17,11 +17,11 @@ export class Moodboard {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ name: 'project_id' })
   projectId: string;
 
   @ManyToOne(() => Project)
-  @JoinColumn({ name: 'projectId' })
+  @JoinColumn({ name: 'project_id' })
   project: Project;
 
   @Column()
@@ -30,11 +30,11 @@ export class Moodboard {
   @Column({ type: 'text', nullable: true })
   description: string;
 
-  @Column()
+  @Column({ name: 'created_by' })
   createdBy: string;
 
   @ManyToOne(() => User)
-  @JoinColumn({ name: 'createdBy' })
+  @JoinColumn({ name: 'created_by' })
   creator: User;
 
   @OneToMany(() => MoodItem, (item) => item.moodboard)

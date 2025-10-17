@@ -1,17 +1,17 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, Index } from 'typeorm';
 
 @Entity('audit_logs')
-@Index(['orgId', 'createdAt'])
-@Index(['userId', 'createdAt'])
+@Index(['org_id', 'createdAt'])
+@Index(['user_id', 'createdAt'])
 @Index(['action', 'createdAt'])
 export class AuditLog {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ name: 'org_id' })
   orgId: string;
 
-  @Column()
+  @Column({ name: 'user_id' })
   userId: string;
 
   @Column()

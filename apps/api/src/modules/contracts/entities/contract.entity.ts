@@ -15,21 +15,21 @@ export class Contract {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ name: 'org_id' })
   orgId: string;
 
   @ManyToOne(() => Organization)
-  @JoinColumn({ name: 'orgId' })
+  @JoinColumn({ name: 'org_id' })
   organization: Organization;
 
-  @Column({ nullable: true })
+  @Column({ name: 'template_id', nullable: true })
   templateId: string;
 
   @ManyToOne(() => ContractTemplate, (template) => template.contracts, { nullable: true })
-  @JoinColumn({ name: 'templateId' })
+  @JoinColumn({ name: 'template_id' })
   template: ContractTemplate;
 
-  @Column({ nullable: true })
+  @Column({ name: 'project_id', nullable: true })
   projectId: string;
 
   @Column()
@@ -118,10 +118,10 @@ export class Contract {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @Column()
+  @Column({ name: 'created_by' })
   createdBy: string;
 
-  @Column({ nullable: true })
+  @Column({ name: 'approved_by', nullable: true })
   approvedBy: string;
 
   @Column({ type: 'timestamp', nullable: true })

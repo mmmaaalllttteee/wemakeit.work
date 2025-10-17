@@ -15,12 +15,12 @@ export class ProjectInfoPage {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ unique: true })
+  @Column({ name: 'project_id', unique: true })
   @Index()
   projectId: string;
 
   @OneToOne(() => Project)
-  @JoinColumn({ name: 'projectId' })
+  @JoinColumn({ name: 'project_id' })
   project: Project;
 
   @Column({ unique: true })

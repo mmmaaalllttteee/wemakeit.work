@@ -15,18 +15,18 @@ export class Note {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ name: 'user_id' })
   userId: string;
 
   @ManyToOne(() => User)
-  @JoinColumn({ name: 'userId' })
+  @JoinColumn({ name: 'user_id' })
   user: User;
 
-  @Column()
+  @Column({ name: 'org_id' })
   orgId: string;
 
   @ManyToOne(() => Organization)
-  @JoinColumn({ name: 'orgId' })
+  @JoinColumn({ name: 'org_id' })
   organization: Organization;
 
   @Column({ type: 'text' })
@@ -44,7 +44,7 @@ export class Note {
   @Column({ default: false })
   isPinned: boolean;
 
-  @Column({ nullable: true })
+  @Column({ name: 'project_id', nullable: true })
   projectId: string;
 
   @Column({ default: 'organization' })

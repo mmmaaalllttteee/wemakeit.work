@@ -53,18 +53,18 @@ export class BoardTemplate {
   @Column({ default: false })
   isOfficial: boolean;
 
-  @Column({ nullable: true })
+  @Column({ name: 'org_id', nullable: true })
   orgId: string;
 
   @ManyToOne(() => Organization, { nullable: true })
-  @JoinColumn({ name: 'orgId' })
+  @JoinColumn({ name: 'org_id' })
   organization: Organization;
 
-  @Column({ nullable: true })
+  @Column({ name: 'created_by', nullable: true })
   createdBy: string;
 
   @ManyToOne(() => User, { nullable: true })
-  @JoinColumn({ name: 'createdBy' })
+  @JoinColumn({ name: 'created_by' })
   creator: User;
 
   @Column({ default: 0 })

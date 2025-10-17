@@ -16,21 +16,21 @@ export class MoodItem {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ name: 'moodboard_id' })
   moodboardId: string;
 
   @ManyToOne(() => Moodboard, (moodboard) => moodboard.items)
-  @JoinColumn({ name: 'moodboardId' })
+  @JoinColumn({ name: 'moodboard_id' })
   moodboard: Moodboard;
 
   @Column()
   type: 'image' | 'video' | 'audio' | 'file' | 'link' | 'text' | 'shape';
 
-  @Column({ nullable: true })
+  @Column({ name: 'file_id', nullable: true })
   fileId: string;
 
   @ManyToOne(() => File, { nullable: true })
-  @JoinColumn({ name: 'fileId' })
+  @JoinColumn({ name: 'file_id' })
   file: File;
 
   @Column({ nullable: true })
@@ -92,11 +92,11 @@ export class MoodItem {
     [key: string]: any;
   };
 
-  @Column()
+  @Column({ name: 'created_by' })
   createdBy: string;
 
   @ManyToOne(() => User)
-  @JoinColumn({ name: 'createdBy' })
+  @JoinColumn({ name: 'created_by' })
   creator: User;
 
   @Column({ type: 'jsonb', nullable: true })
